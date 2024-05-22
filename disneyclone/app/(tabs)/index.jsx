@@ -14,7 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 import { data } from "../data";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Image } from "expo-image";
-const Tab = () => {
+
+const Home = () => {
   const { width: viewportWidth } = Dimensions.get("window");
 
   const [carouselData, setCarouselData] = useState([]);
@@ -48,7 +49,7 @@ const Tab = () => {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => handleCarouselItemPress(item)}>
       <View style={styles.carouselItem}>
         <Image source={{ uri: item.bannerImage }} style={styles.image} />
 
@@ -171,7 +172,7 @@ const Tab = () => {
           keyExtractor={(item) => item.id.toString()}
           horizontal
           renderItem={({ item }) => (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleMovieItemPress(item)}>
               <View style={styles.movieItem}>
                 <Image
                   source={{ uri: item.posterURL }}
@@ -316,4 +317,4 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
-export default Tab;
+export default Home;
