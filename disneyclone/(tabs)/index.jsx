@@ -11,10 +11,10 @@ import {
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import { data } from "../data";
+import { data } from "../app/data.js";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Image } from "expo-image";
-const Tab = () => {
+export const Home = () => {
   const { width: viewportWidth } = Dimensions.get("window");
 
   const [carouselData, setCarouselData] = useState([]);
@@ -316,4 +316,3 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
-export default Tab;
