@@ -8,34 +8,30 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Image } from "expo-image";
 import { getMovies } from "../api/fetch";
 
-export const MovieCard = (heading, genre) => {
+export const MovieCard = ({ heading, genre }) => {
   const { width: viewportWidth } = Dimensions.get("window");
-  const [movies, getMovieByGenre] = useState([]);
-  const [familyMovies, setFamilyMovies] = useState([]);
-  const [horrorMovies, setHorrorMovies] = useState([]);
-  const [mysteryMovies, setMysteryMovies] = useState([]);
-  const [dramaMovies, setDramaMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const navigation = useNavigation();
+
   //const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getMovies("family").then((result) => setFamilyMovies(result));
-    getMovies("horror").then((result) => setHorrorMovies(result));
-    getMovies("mystery").then((result) => setMysteryMovies(result));
-    getMovies("drama").then((result) => setDramaMovies(result));
+    getMovies(genre).then((result) => setMovies(result));
   }, []);
 
   const handleMovieItemPress = (item) => {
     navigation.navigate("MovieDetail", { movie: item });
   };
   return (
-    <View style={{ position: "absolute", top: "55%" }}>
-      <Text style={styles.sectionTitle}>Latest Releases</Text>
+    <>
+      <Text style={styles.sectionTitle}>{heading}</Text>
       <FlatList
-        data={familyMovies}
+        data={movies}
         keyExtractor={(item) => item.id.toString()}
         horizontal
         renderItem={({ item }) => (
@@ -49,7 +45,7 @@ export const MovieCard = (heading, genre) => {
           </TouchableOpacity>
         )}
       />
-    </View>
+    </>
   );
 };
 

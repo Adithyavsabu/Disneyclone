@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: "73%",
     width: "100%",
-    position: "relative",
   },
 
   image: {

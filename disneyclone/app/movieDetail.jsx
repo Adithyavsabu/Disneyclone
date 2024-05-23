@@ -6,14 +6,16 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { MovieCard } from "../Components/MovieCard";
 
 export default function MovieDetail({ route }) {
   const { movie } = route.params;
   console.log("movie in moview details", movie);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {movie.posterURL ? (
         <Image source={{ uri: movie.posterURL }} style={styles.image} />
       ) : (
@@ -44,16 +46,15 @@ export default function MovieDetail({ route }) {
           aliquip ex ea commodo consequat.
         </Text>
       )}
-      <Text
+      <View
         style={{
           flexDirection: "row",
-          justifyContent: "flex-start",
           width: "100%",
           marginTop: 40,
           marginBottom: 40,
+          justifyContent: "space-around",
         }}
       >
-        {" "}
         <View style={styles.iconContainer}>
           <Ionicons name="add" size={32} color="white" />
           <Text style={styles.iconText}>Watchlist</Text>
@@ -70,19 +71,22 @@ export default function MovieDetail({ route }) {
           <Ionicons name="arrow-down" size={32} color="white" />
           <Text style={styles.iconText}>Download</Text>
         </View>
-      </Text>
+      </View>
       {/* <Text style={styles.languages}>
         Languages: {movie.languages.join(", ")}
       </Text> */}
-    </View>
+
+      <MovieCard heading="More Like These" genre="horror" />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    //padding: 16,
     backgroundColor: "black",
+    width: "100%",
   },
 
   image: {
@@ -146,12 +150,15 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: "column",
     justifyContent: "center",
-    alignContent: "center",
+    alignItems: "center",
   },
 
   iconText: {
-    fontSize: 14,
+    fontSize: 15,
     color: "#b6b2b2",
     fontFamily: "sans-serif",
+    alignContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
   },
 });

@@ -5,10 +5,11 @@ import {
   StyleSheet,
   Dimensions,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 
 import { Image } from "expo-image";
-import { getMovies } from "../../api/fetch";
+
 import { CarouselComponent } from "../../Components/Carousel";
 import { MovieCard } from "../../Components/MovieCard";
 
@@ -39,7 +40,10 @@ const Home = () => {
           <Text style={styles.subscribeText}>Subscribe</Text>
         </View>
       </View>
-      <MovieCard genre="family" heading="Latest Releases" />
+      <View style={{ position: "absolute", top: "55%" }}>
+        <MovieCard genre="family" heading="Latest Releases" />
+        <MovieCard genre="mystery" heading="Latest Releases" />
+      </View>
     </View>
   );
 };
@@ -47,11 +51,8 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
-    zIndex: 0,
-    flexDirection: "column",
-    position: "absolute",
+
     height: "100%",
-    width: "100%",
   },
 
   logo: {

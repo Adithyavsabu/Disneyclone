@@ -29,6 +29,9 @@ const Homestack = () => {
         component={MovieDetail}
         options={{
           headerShown: false,
+          presentation: "modal",
+          animationTypeForReplace: "push",
+          animation: "slide_from_bottom",
         }}
       />
     </Stack.Navigator>
