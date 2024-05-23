@@ -28,7 +28,7 @@ export const MovieCard = ({ heading, genre }) => {
     navigation.navigate("MovieDetail", { movie: item });
   };
   return (
-    <>
+    <View>
       <Text style={styles.sectionTitle}>{heading}</Text>
       <FlatList
         data={movies}
@@ -45,7 +45,7 @@ export const MovieCard = ({ heading, genre }) => {
           </TouchableOpacity>
         )}
       />
-    </>
+    </View>
   );
 };
 

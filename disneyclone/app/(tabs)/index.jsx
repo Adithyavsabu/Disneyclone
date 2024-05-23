@@ -12,6 +12,7 @@ import { Image } from "expo-image";
 
 import { CarouselComponent } from "../../Components/Carousel";
 import { MovieCard } from "../../Components/MovieCard";
+import { Studios } from "../../Components/Studios";
 
 const Home = () => {
   const { width: viewportWidth } = Dimensions.get("window");
@@ -25,34 +26,47 @@ const Home = () => {
   //   );
   // }
   return (
-    <View style={styles.container}>
-      <CarouselComponent />
-      <View style={styles.header}>
-        <View style={styles.logo}>
-          <Image
-            source={{
-              uri: "https://img.hotstar.com/image/upload/v1656431456/web-images/logo-d-plus.svg",
-            }}
-            style={{ height: "100%", width: "100%" }}
-          />
+    <ScrollView style={styles.container}>
+      <View>
+        <View style={styles.header}>
+          <View style={styles.logo}>
+            <Image
+              source={{
+                uri: "https://img.hotstar.com/image/upload/v1656431456/web-images/logo-d-plus.svg",
+              }}
+              style={{ height: "100%", width: "100%" }}
+            />
+          </View>
+          <View style={styles.subscribe}>
+            <Text style={styles.subscribeText}>Subscribe</Text>
+          </View>
         </View>
-        <View style={styles.subscribe}>
-          <Text style={styles.subscribeText}>Subscribe</Text>
+        <View
+          style={{
+            height: 450,
+          }}
+        >
+          <CarouselComponent />
         </View>
+        <View style={{}}>
+          <MovieCard genre="horror" heading="Latest Releases" />
+          <MovieCard genre="drama" heading="Latest Releases" />
+          {/* <MovieCard genre="horror" heading="Latest Releases" />
+          <MovieCard genre="drama" heading="Latest Releases" />
+       <MovieCard genre="drama" heading="Latest Releases" /> */}
+        </View>
+        <Text style={{ color: "white" }}>Subscribe</Text>
+        <Studios />
       </View>
-      <View style={{ position: "absolute", top: "55%" }}>
-        <MovieCard genre="family" heading="Latest Releases" />
-        <MovieCard genre="mystery" heading="Latest Releases" />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
-
     height: "100%",
+    flex: 1,
   },
 
   logo: {
@@ -75,6 +89,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 20,
     marginRight: 10,
+
+    zIndex: 3,
   },
 
   subscribeText: {
@@ -85,11 +101,11 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    top: 0,
     marginTop: 10,
     alignItems: "space-between",
     width: "100%",
     position: "absolute",
+    zIndex: 3,
   },
 
   loadingContainer: {
