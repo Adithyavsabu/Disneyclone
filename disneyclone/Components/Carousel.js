@@ -11,44 +11,27 @@ import {
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import { data } from "../app/data.js";
+import { data } from "../data";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Image } from "expo-image";
-export const Home = () => {
-  const { width: viewportWidth } = Dimensions.get("window");
 
+export const CarouselComponent = () => {
+  const { width: viewportWidth } = Dimensions.get("window");
   const [carouselData, setCarouselData] = useState([]);
-  const [moviesData, setMoviesData] = useState([]);
-  //const [loading, setLoading] = useState(false);
+
   const carouselRef = useRef(null);
   const navigation = useNavigation();
 
   useEffect(() => {
     setCarouselData(data);
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://api.sampleapis.com/movies/comedy"
-        );
-        const data = await response.json();
-        setMoviesData(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
   }, []);
+
   const handleCarouselItemPress = (item) => {
     navigation.navigate("MovieDetail", { movie: item });
   };
 
-  const handleMovieItemPress = (item) => {
-    navigation.navigate("MovieDetail", { movie: item });
-  };
-
   const renderItem = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => handleCarouselItemPress(item)}>
       <View style={styles.carouselItem}>
         <Image source={{ uri: item.bannerImage }} style={styles.image} />
 
@@ -86,15 +69,9 @@ export const Home = () => {
       </View>
     </TouchableOpacity>
   );
-  // if (loading) {
-  //   return (
-  //     <View style={styles.loadingContainer}>
-  //       <ActivityIndicator size="large" color="#ffffff" />
-  //     </View>
-  //   );
-  // }
+
   return (
-    <View style={styles.container}>
+    <>
       <Carousel
         ref={carouselRef}
         data={carouselData}
@@ -132,108 +109,11 @@ export const Home = () => {
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
       />
-      <View
-        style={{
-          top: 0,
-
-          marginTop: 10,
-          alignItems: "space-between",
-          width: "100%",
-          position: "absolute",
-        }}
-      >
-        <View style={styles.logo}>
-          <Image
-            source={{
-              uri: "https://img.hotstar.com/image/upload/v1656431456/web-images/logo-d-plus.svg",
-            }}
-            style={{ height: "100%", width: "100%" }}
-          />
-        </View>
-        <View style={styles.subscribe}>
-          <Text
-            style={{
-              color: "rgb(255, 204, 117)",
-              fontSize: 12,
-              fontWeight: "500",
-              alignSelf: "center",
-            }}
-          >
-            Subscribe
-          </Text>
-        </View>
-      </View>
-
-      <View style={{ position: "absolute", top: "55%" }}>
-        <Text style={styles.sectionTitle}>Latest Releases</Text>
-        <FlatList
-          data={moviesData}
-          keyExtractor={(item) => item.id.toString()}
-          horizontal
-          renderItem={({ item }) => (
-            <TouchableOpacity>
-              <View style={styles.movieItem}>
-                <Image
-                  source={{ uri: item.posterURL }}
-                  style={styles.movieImage}
-                />
-              </View>
-            </TouchableOpacity>
-          )}
-        />
-      </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "black",
-    zIndex: 0,
-    flexDirection: "column",
-    position: "absolute",
-    height: "100%",
-    width: "100%",
-  },
-
-  logo: {
-    height: 50,
-    position: "absolute",
-    width: 50,
-    zIndex: 3,
-    top: 0,
-    marginLeft: 10,
-  },
-
-  subscribe: {
-    // paddingTop: 4px,
-    // padding-bottom: 4px;
-    // padding-right: 2px;
-    // padding-left: 8px;
-    justifyContent: "center",
-    flexDirection: "row",
-    width: 70,
-    height: 24,
-    backgroundColor: "rgba(109, 102, 89, 0.2)",
-    borderBottomColor: "rgb(229, 231, 235)",
-    borderColor: "rgb(255, 204, 117)",
-    borderWidth: 1,
-    marginTop: 20,
-    marginRight: 10,
-
-    // border-bottom-left-radius: 18px;
-    // border-bottom-right-radius: 18px;
-    // border-top-right-radius: 18px;
-    // border-top-left-radius: 18px;
-  },
-
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "black",
-  },
-
   carouselItem: {
     backgroundColor: "black",
     borderRadius: 8,
@@ -266,15 +146,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 
-  gradient: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 270,
-    zIndex: 0,
-  },
-
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -293,26 +164,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 
-  sectionTitle: {
-    color: "#fff",
-    fontSize: 20,
-    marginLeft: 20,
-    marginVertical: 10,
-  },
-
-  movieItem: {
-    marginLeft: 20,
-  },
-
-  movieImage: {
-    width: 120,
-    height: 180,
-    borderRadius: 5,
-  },
-
-  movieTitle: {
-    color: "#fff",
-    textAlign: "center",
-    marginTop: 5,
+  gradient: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 270,
+    zIndex: 0,
   },
 });
