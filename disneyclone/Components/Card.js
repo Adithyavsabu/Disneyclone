@@ -1,32 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Image } from "expo-image";
-import { getMovies } from "../api/fetch";
-import { FavouriteContext } from "../Context/FavouriteContext";
 import { handleMovieItemPress } from "../helper/helper";
+import { FavouriteContext } from "../Context/FavouriteContext";
 
-export const MovieCard = ({ heading, genre }) => {
+export const Card = (movies) => {
+  console.log("movies", movies);
+  const navigation = useNavigation();
   const { selectedMovies, isFavorited, handleFavouriteList } =
     useContext(FavouriteContext);
-  const [movies, setMovies] = useState([]);
-  const navigation = useNavigation();
 
   useEffect(() => {
-    getMovies(genre).then((result) => setMovies(result));
     console.log("fav list", selectedMovies);
   }, [selectedMovies]);
-
   return (
     <View>
-      <Text style={styles.sectionTitle}>{heading}</Text>
       <FlatList
         data={movies}
         keyExtractor={(item) => `${item.id}-${item.genre}`}
@@ -60,13 +50,6 @@ export const MovieCard = ({ heading, genre }) => {
 };
 
 const styles = StyleSheet.create({
-  sectionTitle: {
-    color: "#fff",
-    fontSize: 20,
-    marginLeft: 20,
-    marginVertical: 10,
-  },
-
   movieItem: {
     marginLeft: 20,
   },
