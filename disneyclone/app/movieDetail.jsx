@@ -16,11 +16,8 @@ export default function MovieDetail({ route }) {
   console.log("movie in moview details", movie);
   return (
     <ScrollView style={styles.container}>
-      {movie.posterURL ? (
-        <Image source={{ uri: movie.posterURL }} style={styles.image} />
-      ) : (
-        <Image source={{ uri: movie.bannerImage }} style={styles.image} />
-      )}
+      <Image source={{ uri: movie.posterURL }} style={styles.image} />
+
       {movie.titleImage ? (
         <Image source={{ uri: movie.titleImage }} style={styles.titleImage} />
       ) : (
@@ -29,23 +26,19 @@ export default function MovieDetail({ route }) {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Subscribe to Watch</Text>
       </TouchableOpacity>
-      {movie.genre ? (
-        <Text style={styles.genres}>{movie.genres.join("| ")}</Text>
-      ) : (
-        <Text style={styles.genres}>
-          Romance | Comedy | Tragedy | Drama | Couples
-        </Text>
-      )}
-      {movie.description ? (
-        <Text style={styles.description}>{movie.description}</Text>
-      ) : (
-        <Text style={styles.description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </Text>
-      )}
+
+      <Text style={styles.genres}>
+        {movie.genres
+          ? movie.genres.join("| ")
+          : "Romance | Comedy | Tragedy | Drama | Couples"}
+      </Text>
+
+      <Text style={styles.description}>
+        {movie.description
+          ? movie.description
+          : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat."}
+      </Text>
+
       <View
         style={{
           flexDirection: "row",

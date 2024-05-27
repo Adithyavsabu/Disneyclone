@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { View, Text } from "react-native";
 //import { Tabs } from "expo-router";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -10,6 +11,7 @@ import Download from "./downloads";
 import Myspace from "./myspace";
 import Hot from "./new&hot";
 import MovieDetail from "../movieDetail";
+import { FavouriteContext } from "../../context/FavouriteContext";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -39,6 +41,7 @@ const Homestack = () => {
 };
 
 export default function TabLayout() {
+  const { selectedMovies } = useContext(FavouriteContext);
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
@@ -100,7 +103,27 @@ export default function TabLayout() {
           options={{
             title: "MySpace",
             tabBarIcon: ({ color }) => (
-              <FontAwesome size={26} name="user-circle-o" color={color} />
+              <View>
+                <FontAwesome size={26} name="user-circle-o" color={color} />
+                {selectedMovies.length > 0 && (
+                  <View>
+                    <Text
+                      style={{
+                        color: "white",
+                        fontSize: 14,
+                        backgroundColor: "red",
+                        position: "absolute",
+
+                        padding: 3,
+                        bottom: 15,
+                        left: 20,
+                      }}
+                    >
+                      {selectedMovies.length}
+                    </Text>
+                  </View>
+                )}
+              </View>
             ),
           }}
         />

@@ -1,10 +1,13 @@
 import React from "react";
 import { Stack } from "expo-router/stack";
+import { FavouriteProvider } from "../context/FavouriteContext";
 
 export default function AppLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <FavouriteProvider>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </FavouriteProvider>
   );
 }

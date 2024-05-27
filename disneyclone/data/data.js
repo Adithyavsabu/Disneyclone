@@ -1,7 +1,7 @@
 export const data = [
   {
     id: 1,
-    bannerImage:
+    posterURL:
       "https://images.indianexpress.com/2024/04/manjummel-boys-09042024.jpg?w=640",
     titleImage:
       "https://img10.hotstar.com/image/upload/f_auto,h_124/sources/r1/cms/prod/8803/1714809038803-t",
@@ -12,7 +12,7 @@ export const data = [
   },
   {
     id: 2,
-    bannerImage:
+    posterURL:
       "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/821/1650821-i-4a5dae841ed8",
     titleImage:
       "https://img10.hotstar.com/image/upload/f_auto,h_148/sources/r1/cms/prod/820/1650820-t-c3cf77c9c1aa",
@@ -23,7 +23,7 @@ export const data = [
   },
   {
     id: 3,
-    bannerImage:
+    posterURL:
       "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/1583/1511583-i-1251afc06fd0",
     titleImage:
       "https://img10.hotstar.com/image/upload/f_auto,h_148/sources/r1/cms/prod/6862/1666862-t-d0c0d86c11c3",

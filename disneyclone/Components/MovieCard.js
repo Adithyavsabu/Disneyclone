@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import {
   View,
   Text,
@@ -9,11 +9,25 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { Image } from "expo-image";
 import { getMovies } from "../api/fetch";
+import { FavouriteContext } from "../context/FavouriteContext";
+
+// useEffect(() => {
+//   console.log("selected movies rae :", selectedMovies);
+
+//   // to load the data when the site laods or it will result in asynchronous operations of data
+// }, [selectedMovies]);
 
 export const MovieCard = ({ heading, genre }) => {
+  const {
+    selectedMovies,
+
+    isFavorited,
+    handleFavouriteList,
+  } = useContext(FavouriteContext);
   const { width: viewportWidth } = Dimensions.get("window");
   const [movies, setMovies] = useState([]);
   const navigation = useNavigation();
@@ -22,7 +36,8 @@ export const MovieCard = ({ heading, genre }) => {
 
   useEffect(() => {
     getMovies(genre).then((result) => setMovies(result));
-  }, []);
+    console.log("fav list", selectedMovies);
+  }, [selectedMovies]);
 
   const handleMovieItemPress = (item) => {
     navigation.navigate("MovieDetail", { movie: item });
@@ -32,7 +47,7 @@ export const MovieCard = ({ heading, genre }) => {
       <Text style={styles.sectionTitle}>{heading}</Text>
       <FlatList
         data={movies}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => `${item.id}-${item.genre}`}
         horizontal
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => handleMovieItemPress(item)}>
@@ -41,6 +56,17 @@ export const MovieCard = ({ heading, genre }) => {
                 source={{ uri: item.posterURL }}
                 style={styles.movieImage}
               />
+
+              <TouchableOpacity
+                onPress={() => handleFavouriteList(item)}
+                style={{ position: "absolute" }}
+              >
+                <Ionicons
+                  name="heart"
+                  size={32}
+                  color={isFavorited(item) ? "red" : "white"}
+                />
+              </TouchableOpacity>
             </View>
           </TouchableOpacity>
         )}
