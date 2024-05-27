@@ -12,6 +12,7 @@ import { Image } from "expo-image";
 
 import { CarouselComponent } from "../../Components/Carousel";
 import { MovieCard } from "../../Components/MovieCard";
+
 import { Studios } from "../../Components/Studios";
 
 const Home = () => {
@@ -43,20 +44,21 @@ const Home = () => {
         </View>
         <View
           style={{
-            height: 450,
+            height: 480,
           }}
         >
           <CarouselComponent />
         </View>
         <View style={{}}>
           <MovieCard genre="horror" heading="Latest Releases" />
-          <MovieCard genre="drama" heading="Latest Releases" />
-          {/* <MovieCard genre="horror" heading="Latest Releases" />
-          <MovieCard genre="drama" heading="Latest Releases" />
-       <MovieCard genre="drama" heading="Latest Releases" /> */}
+          <MovieCard genre="drama" heading="Drama" />
+          <View style={styles.studiosContainer}>
+            <Studios />
+          </View>
+          <MovieCard genre="western" heading="Western" />
+          <MovieCard genre="mystery" heading="Mystery" />
+          <MovieCard genre="family" heading="family" />
         </View>
-        <Text style={{ color: "white" }}>Subscribe</Text>
-        <Studios />
       </View>
     </ScrollView>
   );
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     width: 70,
-    height: 24,
+    height: 20,
     backgroundColor: "rgba(109, 102, 89, 0.2)",
     borderBottomColor: "rgb(229, 231, 235)",
     borderColor: "rgb(255, 204, 117)",
@@ -113,6 +115,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
+  },
+
+  studiosContainer: {
+    flexDirection: "row",
+    marginLeft: 20,
+    flexWrap: "wrap",
+    marginTop: 10,
+    justifyContent: "center",
   },
 });
 export default Home;

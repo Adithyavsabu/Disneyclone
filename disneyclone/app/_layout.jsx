@@ -1,7 +1,4 @@
 import React from "react";
-
-import { NavigationContainer } from "@react-navigation/native";
-
 import { Stack } from "expo-router/stack";
 
 export default function AppLayout() {

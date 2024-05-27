@@ -17,6 +17,7 @@ import { Image } from "expo-image";
 export const CarouselComponent = () => {
   const { width: viewportWidth } = Dimensions.get("window");
   const [carouselData, setCarouselData] = useState([]);
+  const [activeSlide, setSlide] = useState([]);
   const carouselRef = useRef(null);
   const navigation = useNavigation();
 
@@ -29,9 +30,9 @@ export const CarouselComponent = () => {
   };
   <LinearGradient colors={["transparent", "black"]} style={styles.gradient} />;
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item, index }) => (
     <TouchableOpacity onPress={() => handleCarouselItemPress(item)}>
-      <View style={styles.carouselItem}>
+      <View style={styles.carouselItem} key={index}>
         <Image source={{ uri: item.bannerImage }} style={styles.image} />
         <LinearGradient
           colors={["transparent", "black"]}
@@ -77,17 +78,16 @@ export const CarouselComponent = () => {
         autoplay={true}
         autoplayDelay={10000}
         autoplayInterval={10000}
-        //onSnapToItem={(index) => setSlide({ activeSlide: index })}
+        onSnapToItem={(index) => setSlide(index)}
       />
       <Pagination
         dotsLength={carouselData.length}
-        //activeDotIndex={activeSlide}
+        activeDotIndex={activeSlide}
         containerStyle={{
           alignSelf: "center",
           width: "100%",
           position: "absolute",
-
-          top: 415,
+          bottom: 0,
         }}
         dotStyle={{
           width: 10,
@@ -97,6 +97,8 @@ export const CarouselComponent = () => {
           backgroundColor: "rgba(255, 255, 255, 0.92)",
         }}
         tappableDots={true}
+        dotColor={"rgba(255, 255, 255, 0.92)"} // Add this line
+        inactiveDotColor={"rgba(255, 255, 255, 0.4)"} // Add this line
         inactiveDotStyle={{}}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
 
   button: {
     backgroundColor: "rgba(250, 247, 251, 0.1)",
-    padding: 17,
+    padding: 12,
     borderRadius: 5,
   },
 
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: 230,
+    height: 240,
     position: "absolute",
   },
 });

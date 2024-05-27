@@ -13,8 +13,9 @@ export const data = [
   {
     id: 2,
     bannerImage:
-      "https://static.toiimg.com/thumb/msid-108682513,imgsize-85316,width-400,resizemode-4/108682513.jpg",
-    titleImage: "https://example.com/title2.png",
+      "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/821/1650821-i-4a5dae841ed8",
+    titleImage:
+      "https://img10.hotstar.com/image/upload/f_auto,h_148/sources/r1/cms/prod/820/1650820-t-c3cf77c9c1aa",
     title: "Movie 2",
     genres: ["Drama", "Romance"],
     languages: ["English", "Spanish"],
@@ -23,8 +24,9 @@ export const data = [
   {
     id: 3,
     bannerImage:
-      "https://www.onmanorama.com/content/dam/mm/en/entertainment/movie-reviews/images/2024/4/11/aavesham.jpg.transform/845x440/image.jpg",
-    titleImage: "https://example.com/title3.png",
+      "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/1583/1511583-i-1251afc06fd0",
+    titleImage:
+      "https://img10.hotstar.com/image/upload/f_auto,h_148/sources/r1/cms/prod/6862/1666862-t-d0c0d86c11c3",
     title: "Movie 3",
     genres: ["Comedy", "Family"],
     languages: ["English", "French"],
