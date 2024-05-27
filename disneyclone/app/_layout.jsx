@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack } from "expo-router/stack";
-import { FavouriteProvider } from "../context/FavouriteContext";
+import { FavouriteProvider } from "../Context/FavouriteContext";
 
 export default function AppLayout() {
   return (

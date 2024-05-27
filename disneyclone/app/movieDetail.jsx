@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   Text,
@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { MovieCard } from "../Components/MovieCard";
+import { FavouriteContext } from "../Context/FavouriteContext";
 
 export default function MovieDetail({ route }) {
+  const { isFavorited, handleFavouriteList } = useContext(FavouriteContext);
   const { movie } = route.params;
   console.log("movie in moview details", movie);
   return (
@@ -57,12 +59,18 @@ export default function MovieDetail({ route }) {
           <Text style={styles.iconText}>Share</Text>
         </View>
         <View style={styles.iconContainer}>
-          <Ionicons name="heart-outline" size={32} color="white" />
-          <Text style={styles.iconText}>Rate</Text>
-        </View>
-        <View style={styles.iconContainer}>
           <Ionicons name="arrow-down" size={32} color="white" />
           <Text style={styles.iconText}>Download</Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <TouchableOpacity onPress={() => handleFavouriteList(movie)}>
+            <Ionicons
+              name="heart"
+              size={32}
+              color={isFavorited(movie) ? "red" : "white"}
+            />
+          </TouchableOpacity>
+          <Text style={styles.iconText}>rate</Text>
         </View>
       </View>
       {/* <Text style={styles.languages}>

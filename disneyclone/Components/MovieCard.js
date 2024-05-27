@@ -13,7 +13,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { Image } from "expo-image";
 import { getMovies } from "../api/fetch";
-import { FavouriteContext } from "../context/FavouriteContext";
+import { FavouriteContext } from "../Context/FavouriteContext";
 
 // useEffect(() => {
 //   console.log("selected movies rae :", selectedMovies);

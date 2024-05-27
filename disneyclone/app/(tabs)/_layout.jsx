@@ -11,7 +11,7 @@ import Download from "./downloads";
 import Myspace from "./myspace";
 import Hot from "./new&hot";
 import MovieDetail from "../movieDetail";
-import { FavouriteContext } from "../../context/FavouriteContext";
+import { FavouriteContext } from "../../Context/FavouriteContext";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -72,6 +72,7 @@ export default function TabLayout() {
           component={Search}
           options={{
             title: "Search",
+            headerShown: false,
             tabBarIcon: ({ color }) => (
               <FontAwesome size={26} name="search" color={color} />
             ),
@@ -102,6 +103,7 @@ export default function TabLayout() {
           component={Myspace}
           options={{
             title: "MySpace",
+            headerShown: false,
             tabBarIcon: ({ color }) => (
               <View>
                 <FontAwesome size={26} name="user-circle-o" color={color} />
