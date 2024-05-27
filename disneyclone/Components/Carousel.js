@@ -11,7 +11,6 @@ import Carousel, { Pagination } from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { data } from "../data/data";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Image } from "expo-image";
 
 export const CarouselComponent = () => {
@@ -48,9 +47,9 @@ export const CarouselComponent = () => {
         >
           <Image source={{ uri: item.titleImage }} style={styles.titleImage} />
           <Text style={styles.genres}>
-            {item.languages.join(". ")}
-            <FontAwesome size={6} name="circle" color="white" />
-            {item.genres.join(".")}
+            {item.languages.join(" • ")}
+            {" • "}
+            {item.genres.join(" • ")}
           </Text>
 
           <View style={styles.buttonsContainer}>
